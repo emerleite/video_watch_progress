@@ -1,5 +1,14 @@
 # VideoWatchProgress
 
+## Dependencies
+  * MySQL 5.7
+
+```sh
+$ docker run --name mysql-video -p 3306:3306 -e MYSQL_ALLOW_EMPTY_PASSWORD=true -d mysql:5.7
+```
+
+## Starting
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`

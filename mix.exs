@@ -6,9 +6,9 @@ defmodule VideoWatchProgress.Mixfile do
       app: :video_watch_progress,
       version: "0.0.1",
       elixir: "~> 1.4",
-      elixirc_paths: elixirc_paths(Mix.env),
-      compilers: [:phoenix, :gettext] ++ Mix.compilers,
-      start_permanent: Mix.env == :prod,
+      elixirc_paths: elixirc_paths(Mix.env()),
+      compilers: [:phoenix, :gettext] ++ Mix.compilers(),
+      start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps()
     ]
@@ -26,7 +26,7 @@ defmodule VideoWatchProgress.Mixfile do
 
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
-  defp elixirc_paths(_),     do: ["lib"]
+  defp elixirc_paths(_), do: ["lib"]
 
   # Specifies your project dependencies.
   #
@@ -38,7 +38,13 @@ defmodule VideoWatchProgress.Mixfile do
       {:phoenix_ecto, "~> 3.2"},
       {:mariaex, ">= 0.0.0"},
       {:gettext, "~> 0.11"},
-      {:cowboy, "~> 1.0"}
+      {:cowboy, "~> 1.0"},
+      {:distillery, "~> 2.0"},
+      {:gen_stage, "~> 0.14.0"},
+      {:ex_machina, "~> 2.2", only: :test},
+      {:fake_server, "~> 1.4", only: :test},
+      {:excoveralls, "~> 0.10", only: :test},
+      {:mock, "~> 0.3.2", only: :test}
     ]
   end
 
@@ -52,7 +58,7 @@ defmodule VideoWatchProgress.Mixfile do
     [
       "ecto.setup": ["ecto.create", "ecto.migrate", "run priv/repo/seeds.exs"],
       "ecto.reset": ["ecto.drop", "ecto.setup"],
-      "test": ["ecto.create --quiet", "ecto.migrate", "test"]
+      test: ["ecto.create --quiet", "ecto.migrate", "test"]
     ]
   end
 end
