@@ -41,6 +41,7 @@ defmodule VideoWatchProgress.Mixfile do
       {:cowboy, "~> 1.0"},
       {:distillery, "~> 2.0"},
       {:gen_stage, "~> 0.14.0"},
+      {:corsica, "~> 1.1"},
       {:ex_machina, "~> 2.2", only: :test},
       {:fake_server, "~> 1.4", only: :test},
       {:excoveralls, "~> 0.10", only: :test},
