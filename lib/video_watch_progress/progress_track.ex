@@ -53,6 +53,11 @@ defmodule VideoWatchProgress.ProgressTrack do
     )
   end
 
+  defp ecto_time do
+    timestamp = {_, _, usec} = :os.timestamp()
+    NaiveDateTime.from_erl!(:calendar.now_to_datetime(timestamp), usec)
+  end
+
   @doc false
   def changeset(progress_track, attrs) do
     progress_track
@@ -64,10 +69,5 @@ defmodule VideoWatchProgress.ProgressTrack do
       :last_track_timestamp,
       :user_id
     ])
-  end
-
-  defp ecto_time do
-    timestamp = {_, _, usec} = :os.timestamp()
-    NaiveDateTime.from_erl!(:calendar.now_to_datetime(timestamp), usec)
   end
 end
