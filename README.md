@@ -1,6 +1,11 @@
-# VideoWatchProgress
+# Video Watch Progress
+
+Track video watch progress and return the point you've stopped. 
+
+NOTE: This software it's almost production ready. It's an open source version of what I did for the last two years. There's few work to do. This first version was created to present at Elixir Conf US 2018. In a few weeks I'll release a full production ready with the improvements I have to finish. Take a look on ISSUES and see what's missing.
 
 ## Dependencies
+  * Elixir 1.7
   * MySQL 5.7
 
 ```sh
@@ -17,12 +22,6 @@ To start your Phoenix server:
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-Ready to run in production? Please [check our deployment guides](http://www.phoenixframework.org/docs/deployment).
+## Demo
 
-## Learn more
-
-  * Official website: http://www.phoenixframework.org/
-  * Guides: http://phoenixframework.org/docs/overview
-  * Docs: https://hexdocs.pm/phoenix
-  * Mailing list: http://groups.google.com/group/phoenix-talk
-  * Source: https://github.com/phoenixframework/phoenix
+There is a demo at `demo/index.html` that works with this version.
