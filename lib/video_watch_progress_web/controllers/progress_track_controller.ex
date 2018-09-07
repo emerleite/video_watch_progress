@@ -2,6 +2,7 @@ defmodule VideoWatchProgressWeb.ProgressTrackController do
   use VideoWatchProgressWeb, :controller
 
   alias VideoWatchProgress.EventStore
+  alias VideoWatchProgress.ProgressStore
   alias VideoWatchProgressWeb.UserAuth
 
   require Logger
@@ -15,10 +16,16 @@ defmodule VideoWatchProgressWeb.ProgressTrackController do
     |> Map.merge(%{"user_id" => UserAuth.get_user_id(conn)})
     |> EventStore.enqueue()
 
-    send_resp(conn, 200, "")
+    send_resp(conn, 200, "OK")
+    json(conn, %{ok: true})
   end
 
   def get_progress(conn, params) do
-    send_resp(conn, 200, "")
+    progress =
+      params
+      |> Map.merge(%{"user_id" => UserAuth.get_user_id(conn)})
+      |> ProgressStore.get()
+
+    json(conn, %{progress: progress})
   end
 end

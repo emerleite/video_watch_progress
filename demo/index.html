@@ -20,10 +20,18 @@
            }).then(response => response.json()); // parses response to JSON
        }
 
-       const startTime = 40;
+       let startTime = 0;
+
+       const getProgress = async () => {
+           const response = await fetch('http://localhost:4000/progress/1?token=valid_token');
+           const json = await response.json();
+           startTime = json.progress;
+       }
+
+       getProgress();
 
        function timeUpdate(event) {
-           if (player.currentTime !== startTime) {
+           if (player.currentTime !== startTime && player.currentTime > 0) {
                console.log(player.currentTime);
 
                postData(`http://localhost:4000/progress/?token=valid_token`, {video_id: 1, seconds_watched: Math.round(player.currentTime)})
