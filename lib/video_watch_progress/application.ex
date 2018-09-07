@@ -12,6 +12,13 @@ defmodule VideoWatchProgress.Application do
       supervisor(VideoWatchProgress.Repo, []),
       # Start the endpoint when the application starts
       supervisor(VideoWatchProgressWeb.Endpoint, []),
+
+      # GenStage Events
+      worker(VideoWatchProgress.EventStore, []),
+      worker(VideoWatchProgress.EventConsumer, [
+        %{producer: VideoWatchProgress.EventStore, processor: VideoWatchProgress.EventAggregator}
+      ])
+
       # Start your own worker by calling: VideoWatchProgress.Worker.start_link(arg1, arg2, arg3)
       # worker(VideoWatchProgress.Worker, [arg1, arg2, arg3]),
     ]
