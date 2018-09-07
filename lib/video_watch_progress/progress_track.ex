@@ -16,7 +16,7 @@ defmodule VideoWatchProgress.ProgressTrack do
     timestamps()
   end
 
-  def insert_conflict_strategy(%{fully_watched: fully_watched}) do
+  def insert_conflict_strategy(%{"fully_watched" => fully_watched}) do
     from(v in VideoWatchProgress.ProgressTrack,
       update: [
         set: [
